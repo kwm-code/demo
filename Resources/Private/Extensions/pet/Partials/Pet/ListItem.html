@@ -1,0 +1,29 @@
+<f:section name="simple">
+
+
+    <div class="{cssClass}">
+        <h3>{pet.name}</h3>
+        <p class="lead"> {pet.teaser}</p>
+        <div style="border:1px solid red">{pet.petType.name}</div>
+        <hr/>
+
+        <f:switch expression="{pet.petType.name}">
+            <f:case value="Hund">
+                <f:render section="media" arguments="{media:pet.media, width:200}"/>
+            </f:case>
+            <f:case value="Fische">
+                <f:render section="media" arguments="{media:pet.media, width:400}"/>
+            </f:case>
+        </f:switch>
+
+        <f:link.action action="show" arguments="{pet : pet}"> {pet.name}</f:link.action>
+    </div>
+</f:section>
+
+<f:section name="media">
+    <div>
+        <f:if condition="{media}">
+            <f:media file="{media.0}" width="{width}"/>
+        </f:if>
+    </div>
+</f:section>
